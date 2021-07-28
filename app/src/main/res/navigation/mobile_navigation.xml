@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_shopping_cart">
+
+    <fragment
+        android:id="@+id/navigation_shopping_cart"
+        android:name="br.com.fiap.eightshop.ui.shopping.ShoppingCartFragment"
+        android:label="@string/title_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" />
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="br.com.fiap.eightshop.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_ticket"
+        android:name="br.com.fiap.eightshop.ui.ticket.TicketFragment"
+        android:label="@string/title_ticket"
+        tools:layout="@layout/fragment_ticket" />
+
+    <fragment
+        android:id="@+id/navigation_user"
+        android:name="br.com.fiap.eightshop.ui.user.UserFragment"
+        android:label="@string/title_user"
+        tools:layout="@layout/fragment_user" />
+</navigation>

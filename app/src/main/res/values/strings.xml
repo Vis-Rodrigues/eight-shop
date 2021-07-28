@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">EightShop</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Entrar</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_list_merchant">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_user">Usuário</string>
+    <string name="title_shopping_cart">Carrinho</string>
+    <string name="title_search">Pesquisa</string>
+    <string name="title_ticket">Pedido</string>
+    <string name="title_activity_main">MainActivity</string>
+</resources>
