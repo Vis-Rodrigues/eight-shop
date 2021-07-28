@@ -1,6 +1,8 @@
 package br.com.fiap.eightshop.data
 
 import br.com.fiap.eightshop.data.model.LoggedInUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -30,6 +32,12 @@ class LoginRepository(val dataSource: LoginDataSource) {
     fun login(username: String, password: String): Result<LoggedInUser> {
         // handle login
         val result = dataSource.login(username, password)
+        val auth = Firebase.auth
+
+        auth.signInWithEmailAndPassword(username, password)
+            .addOnSuccessListener {
+//                setLoggedInUser(result.data)
+            }
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)

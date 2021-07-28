@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546870935109",
+    "project_id": "neural-tangent-97914",
+    "storage_bucket": "neural-tangent-97914.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546870935109:android:dd72a83f2f778a9658ed2c",
+        "android_client_info": {
+          "package_name": "br.com.fiap.eightshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546870935109-hd5r8vpv92cvf7r481u5um2vmmmoepm6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1ciO4okU_HMAv0zcsA8PExG-QQtp9egk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546870935109-hd5r8vpv92cvf7r481u5um2vmmmoepm6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

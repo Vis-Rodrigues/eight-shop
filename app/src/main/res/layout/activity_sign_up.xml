@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity">
+
+    <LinearLayout
+        android:padding="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivLogoApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_notifications_black_24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAppName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="42dp"
+                android:layout_marginTop="48dp"
+                android:text="@string/app_name"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/ivLogoApp"
+                app:layout_constraintTop_toTopOf="@+id/ivLogoApp" />
+
+            <TextView
+                android:id="@+id/tvSubTitleSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signup_subtitle"
+                android:textColor="#9EB0BC"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tvAppName"
+                app:layout_constraintTop_toBottomOf="@+id/tvAppName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout style="@style/container_edit_text">
+
+                <TextView
+                    style="@style/label_edit_text"
+                    android:text="@string/prompt_user" />
+
+                <EditText
+                    android:id="@+id/etUserNameSignUp"
+                    style="@style/field_edit_text"
+                    tools:text="Heider Lopes" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/container_edit_text">
+
+                <TextView
+                    style="@style/label_edit_text"
+                    android:text="@string/prompt_email" />
+
+                <EditText
+                    android:id="@+id/etEmailSignUp"
+                    style="@style/field_edit_text"
+                    tools:text="heiderlopes@apps.com.br" />
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/container_edit_text">
+
+                <TextView
+                    style="@style/label_edit_text"
+                    android:text="@string/prompt_password" />
+
+                <EditText
+                    android:id="@+id/etPasswordSignUp"
+                    style="@style/field_edit_text"
+                    android:inputType="textPassword"
+                    tools:text="xxxxxx" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btCreateAccount"
+                android:text="@string/button_create_account"
+                style="@style/button"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
 package br.com.fiap.eightshop.ui.login
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import br.com.fiap.eightshop.data.LoginDataSource
 import br.com.fiap.eightshop.data.LoginRepository
 
