@@ -30,7 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var fAuth: FirebaseAuth
-        private lateinit var user: LoggedInUser
+    private lateinit var user: LoggedInUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +44,6 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
         val signUp = binding.txtCadastro
-
-        if(user !=null){
-
-        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -164,7 +160,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.i(TAG, "signInWithEmail:success")
                         val firebaseUser: FirebaseUser? = fAuth.currentUser
                         if (firebaseUser != null) {
-                            updateUiWithUser(user.email.toString(), user.displayName.toString(),user.uid.toString() )
+                            updateUiWithUser(firebaseUser.email.toString(), firebaseUser.displayName.toString(),firebaseUser.uid.toString() )
                         }
                         callListMerchantActivity()
                     } else {
