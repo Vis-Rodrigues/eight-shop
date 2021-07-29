@@ -8,42 +8,42 @@ import android.widget.TextView
 import android.widget.Toast
 import br.com.fiap.eightshop.cep.Endereco
 import br.com.fiap.eightshop.cep.remote.APIService
+import br.com.fiap.eightshop.databinding.ActivityMainBinding
+import br.com.fiap.eightshop.ui.main.MainContract
+import br.com.fiap.eightshop.ui.main.MainPresenter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MainContract.MainView {
 
-    private lateinit var etCEP: EditText
-    private lateinit var btPesquisar: Button
-    private lateinit var tvLogradouro: TextView
-    private lateinit var tvBairro: TextView
-    private lateinit var tvLocalidade: TextView
-    private lateinit var tvUF: TextView
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainPresenter: MainContract.MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setUpView() // é um binding
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+
+        setContentView(view)
+
+        mainPresenter = MainPresenter(this)
         setUpListener()
     }
 
-    private fun setUpView() {
-        etCEP = findViewById(R.id.etCEP)
-        btPesquisar = findViewById(R.id.btPesquisar)
-        tvLogradouro = findViewById(R.id.tvLogradouro)
-        tvBairro = findViewById(R.id.tvBairro)
-        tvLocalidade = findViewById(R.id.tvLocalidade)
-        tvUF = findViewById(R.id.tvUF)
-    }
-
     private fun setUpListener() {
-        btPesquisar.setOnClickListener {
-            pesquisar()
+        binding.btPesquisar.setOnClickListener {
+            mainPresenter.pesquisar(binding.etCEP.text.toString())
         }
     }
-
-    private fun pesquisar() {
-
-        }
+    override fun mostrarEndereco(endereco: Endereco?) {
+        binding.tvLogradouro.text = endereco?.logradouro
+        binding.tvBairro.text = endereco?.bairro
+        binding.tvLocalidade.text = endereco?.localidade
+        binding.tvUF.text = endereco?.uf
+    }
+    override fun mostrarErro(mensagem: String) {
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+    }
 }

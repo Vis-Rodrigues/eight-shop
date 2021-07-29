@@ -20,7 +20,8 @@ class MainPresenter (var view : MainContract.MainView): MainContract.MainPresent
                     {
                         if(response.isSuccessful) {
                             view.mostrarEndereco(response.body())
-                        } else {view.mostrarErro("Endereço não encontrado")
+                        } else {
+                            view.mostrarErro("Endereço não encontrado")
                         }
                     }
                     override fun onFailure(call: Call<Endereco>,
@@ -30,7 +31,4 @@ class MainPresenter (var view : MainContract.MainView): MainContract.MainPresent
                 })
         }
     }
-}
-
-
 }
