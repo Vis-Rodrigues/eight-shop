@@ -2,13 +2,12 @@ package br.com.fiap.eightshop
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import br.com.fiap.eightshop.data.model.Company
 import br.com.fiap.eightshop.databinding.ActivityCompanyBinding
-import br.com.fiap.eightshop.databinding.ActivityMainBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
-import br.com.fiap.eightshop.ui.main.MainContract
-import br.com.fiap.eightshop.ui.main.MainPresenter
+
 
 private lateinit var binding: ActivityCompanyBinding
 private lateinit var companyPresenter: CompanyContract.CompanyPresenter
@@ -25,15 +24,15 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
     }
 
     fun loadData(){
-        companyPresenter.listCompanies();
+        companyPresenter.listCompanies()
     }
 
-    override fun mostrarDados(company: Company?) {
-        binding.txt1.text = company?.companyName
-        binding.txt2.text = company?.urlImage
+    override fun mostrarDados(company: List<Company>?) {
+        binding.txt1.text = company?.get(0)?.companyName
+        binding.txt2.text = company?.get(0)?.urlImage
     }
 
     override fun mostrarErro(mensagem: String) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
     }
 }

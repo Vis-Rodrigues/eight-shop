@@ -1,11 +1,7 @@
 package br.com.fiap.eightshop.ui.company
 
-import android.os.Parcel
-import android.os.Parcelable
-import br.com.fiap.eightshop.cep.Endereco
-import br.com.fiap.eightshop.cep.remote.APIService
 import br.com.fiap.eightshop.data.model.Company
-import br.com.fiap.eightshop.data.remote.CompanyApiService
+import br.com.fiap.eightshop.data.remote.APIService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,23 +10,23 @@ class CompanyPresenter (var view : CompanyContract.CompanView): CompanyContract.
 
     override fun listCompanies() {
 
-        CompanyApiService.instance
+        APIService.instance
             ?.listCompanies()
-            ?.enqueue(object: Callback<Company> {
-            override fun onResponse(call: Call<Company>,
-                                    response: Response<Company>
-            )
-            {
-                if(response.isSuccessful) {
-                    view.mostrarDados(response.body())
-                } else {
-                    view.mostrarErro("Empresa não encontrada")
+            ?.enqueue(object: Callback<List<Company>> {
+                override fun onResponse(call: Call<List<Company>>,
+                                    response: Response<List<Company>>
+                )
+                {
+                    if(response.isSuccessful) {
+                        view.mostrarDados(response.body())
+                    } else {
+                        view.mostrarErro("Empresa não encontrada")
+                    }
                 }
-            }
-            override fun onFailure(call: Call<Company>,
-                                   t: Throwable) {
-                view.mostrarErro(t.message.toString())
-            }
-        })
+                override fun onFailure(call: Call<List<Company>>,
+                                       t: Throwable) {
+                    view.mostrarErro(t.message.toString())
+                }
+            })
     }
 }

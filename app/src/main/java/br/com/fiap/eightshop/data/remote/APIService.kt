@@ -4,7 +4,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object CompanyApiService {
+object APIService {
         private var INSTANCE: CompanyService? = null
         val instance: CompanyService?
             get() {
@@ -12,7 +12,7 @@ object CompanyApiService {
                     val client = OkHttpClient.Builder()
                         .build()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl("https://6100c9e9bca46600171cf9c0.mockapi.io/eight-shop/v1")
+                        .baseUrl("https://6100c9e9bca46600171cf9c0.mockapi.io/eight-shop/")
                         .addConverterFactory(MoshiConverterFactory.create())
                         .client(client)
                         .build()
