@@ -12,7 +12,7 @@ object APIService {
                     val client = OkHttpClient.Builder()
                         .build()
                     val retrofit = Retrofit.Builder()
-                        .baseUrl("https://6100c9e9bca46600171cf9c0.mockapi.io/eight-shop/")
+                        .baseUrl("https://6100c9e9bca46600171cf9c0.mockapi.io/eight-shop/v1/")
                         .addConverterFactory(MoshiConverterFactory.create())
                         .client(client)
                         .build()

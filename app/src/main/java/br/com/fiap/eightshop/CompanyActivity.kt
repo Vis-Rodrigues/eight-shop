@@ -24,6 +24,7 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
     }
 
     fun loadData(){
+        println("valor**********************")
         companyPresenter.listCompanies()
     }
 
