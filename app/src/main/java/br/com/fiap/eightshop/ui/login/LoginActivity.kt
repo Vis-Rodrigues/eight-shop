@@ -164,7 +164,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.i(TAG, "signInWithEmail:success")
                         val firebaseUser: FirebaseUser? = fAuth.currentUser
                         if (firebaseUser != null) {
-                            updateUiWithUser(user.email.toString(), user.displayName.toString(),user.uid.toString() )
+                            updateUiWithUser(user.email.toString(), user.displayName.toString(),user.userId.toString() )
                         }
                         callListMerchantActivity()
                     } else {
