@@ -1,6 +1,12 @@
 package br.com.fiap.eightshop.data
 
+import android.content.Intent
+import android.util.Log
+import android.widget.Toast
+import br.com.fiap.eightshop.ListMerchantActivity
 import br.com.fiap.eightshop.data.model.LoggedInUser
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -34,10 +40,27 @@ class LoginRepository(val dataSource: LoginDataSource) {
         val result = dataSource.login(username, password)
         val auth = Firebase.auth
 
-        auth.signInWithEmailAndPassword(username, password)
-            .addOnSuccessListener {
-//                setLoggedInUser(result.data)
-            }
+//        fAuth.signInWithEmailAndPassword(email, password)
+//            .addOnCompleteListener(this,
+//                OnCompleteListener<AuthResult?> { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d("E", "signInWithEmail:success")
+//                        val user: FirebaseUser? = fAuth.currentUser
+//                        updateUiWithUser(user)
+//                        val intent = Intent(this@LoginActivity, ListMerchantActivity::class.java)
+//                        startActivity(intent)
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.w("E", "signInWithEmail:failure", task.exception)
+//                        Toast.makeText(
+//                            this@LoginActivity, "Authentication failed.",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        updateUiWithUser(null)
+//                    }
+//
+//                })
 
         if (result is Result.Success) {
             setLoggedInUser(result.data)
@@ -45,6 +68,30 @@ class LoginRepository(val dataSource: LoginDataSource) {
 
         return result
     }
+
+//    private fun login(email:String, password:String){
+//        fAuth.signInWithEmailAndPassword(email, password)
+//            .addOnCompleteListener(this,
+//                OnCompleteListener<AuthResult?> { task ->
+//                    if (task.isSuccessful) {
+//                        // Sign in success, update UI with the signed-in user's information
+//                        Log.d("E", "signInWithEmail:success")
+//                        val user: FirebaseUser? = fAuth.currentUser
+//                        updateUiWithUser(user)
+//                        val intent = Intent(this@LoginActivity, ListMerchantActivity::class.java)
+//                        startActivity(intent)
+//                    } else {
+//                        // If sign in fails, display a message to the user.
+//                        Log.w("E", "signInWithEmail:failure", task.exception)
+//                        Toast.makeText(
+//                            this@LoginActivity, "Authentication failed.",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                        updateUiWithUser(null)
+//                    }
+//
+//                })
+//    }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser

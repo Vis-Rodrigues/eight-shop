@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import br.com.fiap.eightshop.ListMerchantActivity
 import br.com.fiap.eightshop.R
 import br.com.fiap.eightshop.SignUpActivity
+import br.com.fiap.eightshop.data.model.LoggedInUser
 import br.com.fiap.eightshop.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
@@ -29,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginViewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     private lateinit var fAuth: FirebaseAuth
+        private lateinit var user: LoggedInUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,11 +39,15 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val username = binding.username
+        val email = binding.username
         val password = binding.password
         val login = binding.login
         val loading = binding.loading
-        val cadastro = binding.txtCadastro
+        val signUp = binding.txtCadastro
+
+        if(user !=null){
+
+        }
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
@@ -53,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             login.isEnabled = loginState.isDataValid
 
             if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
+                email.error = getString(loginState.usernameError)
             }
             if (loginState.passwordError != null) {
                 password.error = getString(loginState.passwordError)
@@ -76,9 +82,9 @@ class LoginActivity : AppCompatActivity() {
             finish()
         })
 
-        username.afterTextChanged {
+        email.afterTextChanged {
             loginViewModel.loginDataChanged(
-                username.text.toString(),
+                email.text.toString(),
                 password.text.toString()
             )
         }
@@ -86,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         password.apply {
             afterTextChanged {
                 loginViewModel.loginDataChanged(
-                    username.text.toString(),
+                    email.text.toString(),
                     password.text.toString()
                 )
             }
@@ -95,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         loginViewModel.login(
-                            username.text.toString(),
+                            email.text.toString(),
                             password.text.toString()
                         )
                 }
@@ -105,15 +111,13 @@ class LoginActivity : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
 
-                val email = username.text.toString()
+                val email = email.text.toString()
                 val passwordValue = password.text.toString()
 
                 login(email, passwordValue)
-
-//                loginViewModel.login(username.text.toString(), password.text.toString())
             }
 
-            cadastro.setOnClickListener {
+            signUp.setOnClickListener {
                 val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
                 startActivity(intent)
             }
@@ -121,22 +125,30 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun callListMerchantActivity(){
+        val intent = Intent(this@LoginActivity, ListMerchantActivity::class.java)
+        intent.putExtra(R.string.prompt_user.toString(),user.displayName)
+        intent.putExtra(R.string.prompt_email.toString(),user.email)
+        startActivity(intent)
+    }
+
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser: FirebaseUser? = fAuth.getCurrentUser()
-        updateUiWithUser(currentUser)
+        val user= intent.getStringExtra(R.string.prompt_user.toString())
+        if(user !=null){
+            binding.username.setText(intent.getStringExtra(R.string.prompt_email.toString()))
+            Toast.makeText(
+                applicationContext,
+                "Usuário ${user} cadastrado com sucesso!",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
     }
 
-    private fun updateUiWithUser(model: FirebaseUser?) {
-        val welcome = getString(R.string.welcome)
-        val displayName = "fixo"
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
+    private fun updateUiWithUser(email: String, name: String, userId: String) {
+        user = LoggedInUser(userId, name, email)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -149,22 +161,26 @@ class LoginActivity : AppCompatActivity() {
                 OnCompleteListener<AuthResult?> { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
-                        Log.d("E", "signInWithEmail:success")
-                        val user: FirebaseUser? = fAuth.currentUser
-                        updateUiWithUser(user)
-                        val intent = Intent(this@LoginActivity, ListMerchantActivity::class.java)
-                        startActivity(intent)
+                        Log.i(TAG, "signInWithEmail:success")
+                        val firebaseUser: FirebaseUser? = fAuth.currentUser
+                        if (firebaseUser != null) {
+                            updateUiWithUser(user.email.toString(), user.displayName.toString(),user.uid.toString() )
+                        }
+                        callListMerchantActivity()
                     } else {
                         // If sign in fails, display a message to the user.
-                        Log.w("E", "signInWithEmail:failure", task.exception)
+                        Log.w(TAG, "signInWithEmail:failure", task.exception)
                         Toast.makeText(
-                            this@LoginActivity, "Authentication failed.",
+                            this@LoginActivity, "E-mail ou senha inválidos!",
                             Toast.LENGTH_SHORT
                         ).show()
-                        updateUiWithUser(null)
                     }
 
                 })
+    }
+
+    companion object {
+        private const val TAG = "LoginActivity"
     }
 }
 
@@ -182,4 +198,6 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
     })
 }
+
+
 

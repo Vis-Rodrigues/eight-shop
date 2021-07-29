@@ -1,29 +1,35 @@
 package br.com.fiap.eightshop
 
-import android.R.attr.password
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.fiap.eightshop.data.FirebaseResult
+import br.com.fiap.eightshop.data.FirebaseService
+import br.com.fiap.eightshop.data.model.SignupModel
 import br.com.fiap.eightshop.databinding.ActivitySignUpBinding
 import br.com.fiap.eightshop.ui.login.LoginActivity
+import br.com.fiap.eightshop.ui.login.UserView
+import br.com.fiap.eightshop.ui.signup.SignUpContract
+import br.com.fiap.eightshop.ui.signup.SingUpPresenter
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
-class SignUpActivity : AppCompatActivity() {
+class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
     private lateinit var binding: ActivitySignUpBinding
-    private lateinit var fAuth: FirebaseAuth
+    private lateinit var signupPresenter: SignUpContract.SignUpPresenter
+    private lateinit var mAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-
-        fAuth = FirebaseAuth.getInstance();
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -33,50 +39,49 @@ class SignUpActivity : AppCompatActivity() {
         val password = binding.etPasswordSignUp
         val btnSignUp = binding.btCreateAccount
 
+        signupPresenter = SingUpPresenter(this)
+
         btnSignUp.setOnClickListener {
-            signUp(name.text.toString(), email.text.toString(), password.text.toString())
+            signUp(getSignupModel(name.text.toString(), email.text.toString(), password.text.toString()))
         }
     }
 
-    private fun signUp(name:String, email:String, pass:String){
-        fAuth.createUserWithEmailAndPassword(email, pass)
-            .addOnCompleteListener(this,
+    private fun signUp(model: SignupModel){
+        mAuth.createUserWithEmailAndPassword(model.email, model.pass)
+            .addOnCompleteListener(
                 OnCompleteListener<AuthResult?> { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("fixo", "createUserWithEmail:success")
-                        val currentUser = fAuth.currentUser
-//                        updateUI(user)
-                        val userProfile = UserProfileChangeRequest.Builder().setDisplayName(name).build()
-                        currentUser!!.updateProfile(userProfile)
-                            .addOnCompleteListener {
-                                val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
-                                startActivity(intent)
-                            }
-
+                        Log.i(TAG, "createUserWithEmail:success")
+                        val intent = Intent(this@SignUpActivity, LoginActivity::class.java)
+                        intent.putExtra(R.string.prompt_user.toString(),model.name)
+                        intent.putExtra(R.string.prompt_email.toString(),model.email)
+                        startActivity(intent)
                     } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("fixo", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            this@SignUpActivity, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-//                        updateUI(null)
+                        Log.e(TAG, "createUserWithEmail:failure", task.exception)
+                        showError("Erro ao cadastrar usuário, tente mais tarde!")
                     }
                 })
     }
 
+    private fun getSignupModel(name:String, email:String, pass:String): SignupModel{
+        return SignupModel(name, email, pass)
+    }
+
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser: FirebaseUser? = fAuth.currentUser
-//        updateUI(currentUser)
+        mAuth = Firebase.auth
+    }
 
+    override fun showError(message: String) {
         Toast.makeText(
             applicationContext,
-            "Entrou",
+            message,
             Toast.LENGTH_LONG
         ).show()
+    }
+
+    companion object {
+        private const val TAG = "SingUpActivity"
     }
 
 
