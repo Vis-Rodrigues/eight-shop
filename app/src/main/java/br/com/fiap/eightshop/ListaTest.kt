@@ -34,14 +34,14 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
         }
     }
 
-    override fun mostrarDados(companies: List<Company>) {
+    override fun showData(companies: List<Company>) {
 
         val myListAdapter = CompanyListAdapter(this, companies)
         binding.listView.adapter = myListAdapter
 
     }
 
-    override fun mostrarErro(message: String) {
+    override fun showError(message: String) {
         Toast.makeText(
             this, message, Toast.LENGTH_LONG
         ).show()

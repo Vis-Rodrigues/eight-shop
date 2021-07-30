@@ -18,14 +18,14 @@ class CompanyPresenter (var view : CompanyContract.CompanView): CompanyContract.
                 )
                 {
                     if(response.isSuccessful) {
-                        response.body()?.let { view.mostrarDados(it) }
+                        response.body()?.let { view.showData(it) }
                     } else {
-                        view.mostrarErro("Empresa não encontrada")
+                        view.showError("Empresa não encontrada")
                     }
                 }
                 override fun onFailure(call: Call<List<Company>>,
                                        t: Throwable) {
-                    view.mostrarErro(t.message.toString())
+                    view.showError(t.message.toString())
                 }
             })
     }

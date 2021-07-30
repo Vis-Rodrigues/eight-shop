@@ -12,7 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EightShop">
-        <activity android:name=".HallRow"></activity>
+        <activity android:name=".ProductRow"></activity>
+        <activity android:name=".ProductListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HallRow" />
         <activity android:name=".HallListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
