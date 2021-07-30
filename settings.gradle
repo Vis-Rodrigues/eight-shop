@@ -1,2 +1,3 @@
 rootProject.name = "EightShop"
 include ':app'
+include ':domain'
