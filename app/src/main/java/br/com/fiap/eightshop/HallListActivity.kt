@@ -21,8 +21,13 @@ class HallListActivity : AppCompatActivity(), HallContract.HallView {
         binding = ActivityHallListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val id= intent.getStringExtra(R.string.company_id.toString())
+        val name = intent.getStringExtra(R.string.company_name.toString())
+
         hallPresenter = HallPresenter(this)
-        hallPresenter.listHallByCompanyId(1)
+        if (id != null) {
+            hallPresenter.listHallByCompanyId(id.toInt())
+        }
 
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)

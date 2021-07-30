@@ -1,5 +1,6 @@
 package br.com.fiap.eightshop
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -35,5 +36,11 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
 
     override fun mostrarErro(mensagem: String) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showHalls(id: String, name: String) {
+        val intent = Intent(this@CompanyActivity, HallListActivity::class.java)
+        intent.putExtra("companyId",id)
+        startActivity(intent)
     }
 }

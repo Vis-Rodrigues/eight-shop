@@ -1,5 +1,6 @@
 package br.com.fiap.eightshop.ui.hall
 
+import android.util.Log
 import br.com.fiap.eightshop.data.model.Hall
 import br.com.fiap.eightshop.data.remote.APIService
 import retrofit2.Call
@@ -17,6 +18,7 @@ class HallPresenter (var view : HallContract.HallView): HallContract.HallPresent
                                     response: Response<List<Hall>>
                 )
                 {
+                    Log.i(TAG, "Listando os corredores de company $companyId")
                     if(response.isSuccessful) {
                         val halls = response.body()?.filter {it.companyId == companyId}
                         if (halls != null) {
@@ -31,6 +33,9 @@ class HallPresenter (var view : HallContract.HallView): HallContract.HallPresent
                     view.showError(t.message.toString())
                 }
             })
+    }
+    companion object {
+        private const val TAG = "HallPresenter"
     }
 
 }

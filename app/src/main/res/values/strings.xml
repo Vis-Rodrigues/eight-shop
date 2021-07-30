@@ -22,4 +22,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="signup_subtitle">Cadastro</string>
     <string name="button_create_account">Cadastrar</string>
+    <string name="company_id">companyId</string>
+    <string name="company_name">companyName</string>
 </resources>

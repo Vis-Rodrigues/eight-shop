@@ -1,9 +1,12 @@
 package br.com.fiap.eightshop
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import br.com.fiap.eightshop.data.model.Company
+import br.com.fiap.eightshop.data.model.Hall
 import br.com.fiap.eightshop.databinding.ActivityListaTestBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
@@ -25,14 +28,14 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
 
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            Toast.makeText(
-                this,
-                "Click on item at $itemAtPos its item id $itemIdAtPos",
-                Toast.LENGTH_LONG
-            ).show()
+            Log.i(TAG, "Dados do estabelecimento $itemAtPos")
+            val company: Company = itemAtPos as Company
+
+            showHalls(company.id.toString(), company.companyName)
         }
     }
+
+
 
     override fun mostrarDados(companies: List<Company>) {
 
@@ -45,5 +48,16 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
         Toast.makeText(
             this, message, Toast.LENGTH_LONG
         ).show()
+    }
+
+    override fun showHalls(id: String, name: String) {
+        val intent = Intent(this@ListaTest, HallListActivity::class.java)
+        intent.putExtra(R.string.company_id.toString(),id)
+        intent.putExtra(R.string.company_name.toString(),name)
+        startActivity(intent)
+    }
+
+    companion object {
+        private const val TAG = "ListaTest"
     }
 }
