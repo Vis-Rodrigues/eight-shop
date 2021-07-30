@@ -6,16 +6,16 @@
     app:startDestination="@+id/navigation_shopping_cart">
 
     <fragment
-        android:id="@+id/navigation_shopping_cart"
-        android:name="br.com.fiap.eightshop.ui.shopping.ShoppingCartFragment"
-        android:label="@string/title_shopping_cart"
-        tools:layout="@layout/fragment_shopping_cart" />
-
-    <fragment
         android:id="@+id/navigation_search"
         android:name="br.com.fiap.eightshop.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_shopping_cart"
+        android:name="br.com.fiap.eightshop.ui.shopping.ShoppingCartFragment"
+        android:label="@string/title_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" />
 
     <fragment
         android:id="@+id/navigation_ticket"

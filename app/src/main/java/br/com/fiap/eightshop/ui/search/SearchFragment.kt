@@ -42,6 +42,10 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
         companyPresenter = CompanyPresenter(this)
         companyPresenter.listCompanies()
 
+        val userName= activity?.intent?.extras?.getString(R.string.prompt_user.toString())
+
+        binding.txtUser.text = "Olá $userName,"
+
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
             Log.i(TAG, "Dados do estabelecimento $itemAtPos")
