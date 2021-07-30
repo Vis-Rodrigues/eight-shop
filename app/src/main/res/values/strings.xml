@@ -16,9 +16,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_user">Usuário</string>
-    <string name="title_shopping_cart">Carrinho</string>
-    <string name="title_search">Pesquisa</string>
-    <string name="title_ticket">Pedido</string>
+    <string name="title_shopping_cart">Carrinhos</string>
+    <string name="title_search">Estabelecimentos</string>
+    <string name="title_ticket">Pedidos</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="signup_subtitle">Cadastro</string>
     <string name="button_create_account">Cadastrar</string>
