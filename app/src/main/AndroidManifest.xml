@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EightShop">
+
         <activity android:name=".HallRow"></activity>
         <activity android:name=".HallListActivity"/>
         <activity android:name=".CustomList" />
@@ -20,6 +21,9 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
+
+        <activity android:name=".Hall"></activity>
+
         <activity
             android:name=".ListMerchantActivity"
             android:label="@string/title_activity_list_merchant" >
