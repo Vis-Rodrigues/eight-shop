@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import br.com.fiap.eightshop.data.model.Company
-import br.com.fiap.eightshop.databinding.ActivityCompanyBinding
 import br.com.fiap.eightshop.databinding.ActivityListaTestBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
-import br.com.fiap.eightshop.ui.company.MyListAdapter
-import kotlinx.android.synthetic.main.activity_lista_test.*
+import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 
 class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
 
@@ -22,14 +20,7 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
         "Java",
         ".Net",
         "Kotlin",
-        "Ruby",
-        "Rails",
-        "Python",
-        "Java Script",
-        "Php",
-        "Ajax",
-        "Perl",
-        "Hadoop"
+        "Ruby"
     )
     val description = arrayOf<String>(
         "C programming is considered as the base for other programming languages",
@@ -83,9 +74,9 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
         }
     }
 
-    override fun mostrarDados(companies: List<Company>?) {
+    override fun mostrarDados(companies: List<Company>) {
 
-        val myListAdapter = MyListAdapter(this, language, companies)
+        val myListAdapter = CompanyListAdapter(this, companies)
         binding.listView.adapter = myListAdapter
 
     }
@@ -102,14 +93,14 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
 //
 //
 //private lateinit var binding: ActivityCompanyBinding
-//    private lateinit var companyPresenter: CompanyContract.CompanyPresenter
+//    private lateinit var companyPresenter: HallContract.HallPresenter
 //
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //        binding = ActivityCompanyBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
 //
-//        companyPresenter = CompanyPresenter(this)
+//        companyPresenter = HallPresenter(this)
 //        loadData()
 //    }
 //

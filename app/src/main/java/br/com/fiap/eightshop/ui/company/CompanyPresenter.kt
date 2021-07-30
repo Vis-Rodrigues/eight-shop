@@ -18,7 +18,7 @@ class CompanyPresenter (var view : CompanyContract.CompanView): CompanyContract.
                 )
                 {
                     if(response.isSuccessful) {
-                        view.mostrarDados(response.body())
+                        response.body()?.let { view.mostrarDados(it) }
                     } else {
                         view.mostrarErro("Empresa não encontrada")
                     }

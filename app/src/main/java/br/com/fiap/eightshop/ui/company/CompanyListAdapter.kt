@@ -6,11 +6,15 @@ import android.view.ViewGroup
 import android.widget.*
 import br.com.fiap.eightshop.R
 import br.com.fiap.eightshop.data.model.Company
+import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
-class MyListAdapter(private val context: Activity, private val title: Array<String>, private val companies: List<Company>?)
-    : ArrayAdapter<String>(context, R.layout.custom_list, title) {
+class CompanyListAdapter(private val context: Activity,
+                         private val companies: List<Company>)
+    : ArrayAdapter<Company>(context, R.layout.custom_list, companies) {
 
     override fun getView(position: Int, view: View?, parent: ViewGroup): View {
+        var picasso = Picasso.get()
         val inflater = context.layoutInflater
         val rowView = inflater.inflate(R.layout.custom_list, null, true)
 
@@ -19,7 +23,8 @@ class MyListAdapter(private val context: Activity, private val title: Array<Stri
         val subtitleText = rowView.findViewById(R.id.description) as TextView
 
         titleText.text = companies?.get(position)?.companyName
-        imageView.setImageResource(R.drawable.googleg_disabled_color_18)
+//        picasso.load(companies?.get(position)?.urlImage).resize(50, 50).centerCrop().into(imageView)
+        Glide.with(context).load(companies?.get(position)?.urlImage).into(imageView);
         subtitleText.text = companies?.get(position)?.description
 
         return rowView

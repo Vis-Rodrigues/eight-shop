@@ -28,7 +28,7 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
         companyPresenter.listCompanies()
     }
 
-    override fun mostrarDados(company: List<Company>?) {
+    override fun mostrarDados(company: List<Company>) {
         binding.txt1.text = company?.get(0)?.companyName
         binding.txt2.text = company?.get(0)?.urlImage
     }
