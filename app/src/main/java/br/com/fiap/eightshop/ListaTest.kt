@@ -14,46 +14,6 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
     private lateinit var binding: ActivityListaTestBinding
     private lateinit var companyPresenter: CompanyContract.CompanyPresenter
 
-    val language = arrayOf<String>(
-        "C",
-        "C++",
-        "Java",
-        ".Net",
-        "Kotlin",
-        "Ruby"
-    )
-    val description = arrayOf<String>(
-        "C programming is considered as the base for other programming languages",
-        "C++ is an object-oriented programming language.",
-        "Java is a programming language and a platform.",
-        ".NET is a framework which is used to develop software applications.",
-        "Kotlin is a open-source programming language, used to develop Android apps and much more.",
-        "Ruby is an open-source and fully object-oriented programming language.",
-        "Ruby on Rails is a server-side web application development framework written in Ruby language.",
-        "Python is interpreted scripting  and object-oriented programming language.",
-        "JavaScript is an object-based scripting language.",
-        "PHP is an interpreted language, i.e., there is no need for compilation.",
-        "AJAX allows you to send and receive data asynchronously without reloading the web page.",
-        "Perl is a cross-platform environment used to create network and server-side applications.",
-        "Hadoop is an open source framework from Apache written in Java."
-    )
-
-    val imageId = arrayOf<Int>(
-        R.drawable.common_full_open_on_phone,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal,
-        R.drawable.common_google_signin_btn_icon_dark_normal
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -81,39 +41,9 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
 
     }
 
-    override fun mostrarErro(mensagem: String) {
-        TODO("Not yet implemented")
+    override fun mostrarErro(message: String) {
+        Toast.makeText(
+            this, message, Toast.LENGTH_LONG
+        ).show()
     }
 }
-//}
-//
-//
-//
-//
-//
-//
-//private lateinit var binding: ActivityCompanyBinding
-//    private lateinit var companyPresenter: HallContract.HallPresenter
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityCompanyBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        companyPresenter = HallPresenter(this)
-//        loadData()
-//    }
-//
-//    fun loadData() {
-//        companyPresenter.listCompanies()
-//    }
-//
-//    override fun mostrarDados(company: List<Company>?) {
-//        binding.txt1.text = company?.get(0)?.companyName
-//        binding.txt2.text = company?.get(0)?.urlImage
-//    }
-//
-//    override fun mostrarErro(mensagem: String) {
-//        Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
-//    }
-//}

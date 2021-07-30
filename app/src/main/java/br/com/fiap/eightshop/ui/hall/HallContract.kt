@@ -6,8 +6,8 @@ import br.com.fiap.eightshop.data.model.Hall
 interface HallContract {
 
     interface HallView {
-        fun mostrarDados(hall: List<Hall>)
-        fun mostrarErro(mensagem: String)
+        fun showData(hall: List<Hall>)
+        fun showError(message: String)
     }
 
     interface HallPresenter {

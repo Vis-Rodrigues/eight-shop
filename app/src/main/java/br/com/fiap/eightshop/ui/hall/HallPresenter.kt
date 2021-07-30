@@ -20,15 +20,15 @@ class HallPresenter (var view : HallContract.HallView): HallContract.HallPresent
                     if(response.isSuccessful) {
                         val halls = response.body()?.filter {it.companyId == companyId}
                         if (halls != null) {
-                            view.mostrarDados(halls)
+                            view.showData(halls)
                         }
                     } else {
-                        view.mostrarErro("Corredor não encontrado")
+                        view.showError("Corredor não encontrado")
                     }
                 }
                 override fun onFailure(call: Call<List<Hall>>,
                                        t: Throwable) {
-                    view.mostrarErro(t.message.toString())
+                    view.showError(t.message.toString())
                 }
             })
     }

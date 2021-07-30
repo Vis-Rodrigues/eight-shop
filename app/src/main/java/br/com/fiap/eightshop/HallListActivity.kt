@@ -35,13 +35,15 @@ class HallListActivity : AppCompatActivity(), HallContract.HallView {
         }
     }
 
-    override fun mostrarDados(halls: List<Hall>) {
+    override fun showData(halls: List<Hall>) {
         val hallListAdapter = HallListAdapter(this, halls)
         binding.listView.adapter = hallListAdapter
         binding.progressBar.visible(false)
     }
 
-    override fun mostrarErro(mensagem: String) {
-        TODO("Not yet implemented")
+    override fun showError(message: String) {
+        Toast.makeText(
+            this, message, Toast.LENGTH_LONG
+        ).show()
     }
 }
