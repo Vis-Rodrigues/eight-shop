@@ -41,22 +41,22 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        companyPresenter = CompanyPresenter(this)
-        companyPresenter.listCompanies()
-
-        binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
-            val itemAtPos = adapterView.getItemAtPosition(position)
-            Log.i(TAG, "Dados do estabelecimento $itemAtPos")
-            val company: Company = itemAtPos as Company
-
-            showHalls(company.id.toString(), company.companyName)
-        }
+//        companyPresenter = CompanyPresenter(this)
+//        companyPresenter.listCompanies()
+//
+//        binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
+//            val itemAtPos = adapterView.getItemAtPosition(position)
+//            Log.i(TAG, "Dados do estabelecimento $itemAtPos")
+//            val company: Company = itemAtPos as Company
+//
+//            showHalls(company.id.toString(), company.companyName)
+//        }
     }
 
     override fun mostrarDados(companies: List<Company>) {
 
-        val myListAdapter = CompanyListAdapter(this, companies)
-        binding.listView.adapter = myListAdapter
+//        val myListAdapter = CompanyListAdapter(this, companies)
+//        binding.listView.adapter = myListAdapter
 
     }
 

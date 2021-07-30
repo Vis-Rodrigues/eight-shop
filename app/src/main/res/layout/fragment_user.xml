@@ -61,10 +61,5 @@
                 android:inputType="textMultiLine" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="562dp"
-            android:layout_gravity="bottom|center" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

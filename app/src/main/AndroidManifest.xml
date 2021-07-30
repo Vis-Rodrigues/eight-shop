@@ -16,18 +16,18 @@
         <activity android:name=".HallListActivity"/>
         <activity android:name=".CustomList" />
         <activity android:name=".ListaTest">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SignUpActivity" />
         <activity
             android:name=".ListMerchantActivity"
             android:label="@string/title_activity_list_merchant" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
