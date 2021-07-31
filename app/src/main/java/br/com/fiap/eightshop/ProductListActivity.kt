@@ -3,26 +3,29 @@ package br.com.fiap.eightshop
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import br.com.fiap.eightshop.data.model.Hall
-import br.com.fiap.eightshop.databinding.ActivityHallListBinding
+import br.com.fiap.eightshop.data.model.Product
+import br.com.fiap.eightshop.databinding.ActivityProductListBinding
 import br.com.fiap.eightshop.ui.company.extensions.visible
-import br.com.fiap.eightshop.ui.hall.HallContract
-import br.com.fiap.eightshop.ui.hall.HallListAdapter
-import br.com.fiap.eightshop.ui.hall.HallPresenter
+import br.com.fiap.eightshop.ui.product.ProductContract
+import br.com.fiap.eightshop.ui.product.ProductListAdapter
+import br.com.fiap.eightshop.ui.product.ProductPresenter
 
-class HallListActivity : AppCompatActivity(), HallContract.HallView {
-
-    private lateinit var binding: ActivityHallListBinding
-    private lateinit var productPresenter: HallContract.HallPresenter
+class ProductListActivity : AppCompatActivity(), ProductContract.ProductView {
+    private lateinit var binding: ActivityProductListBinding
+    private lateinit var productPresenter: ProductContract.ProductPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHallListBinding.inflate(layoutInflater)
+        binding = ActivityProductListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        productPresenter = HallPresenter(this)
-        productPresenter.listHallByCompanyId(1)
+        productPresenter = ProductPresenter(this)
+        productPresenter.listProductByHallId(1)
 
+        setUpListener()
+    }
+
+    private fun setUpListener() {
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
             val itemIdAtPos = adapterView.getItemIdAtPosition(position)
@@ -34,9 +37,9 @@ class HallListActivity : AppCompatActivity(), HallContract.HallView {
         }
     }
 
-    override fun showData(halls: List<Hall>) {
-        val hallListAdapter = HallListAdapter(this, halls)
-        binding.listView.adapter = hallListAdapter
+    override fun showData(halls: List<Product>) {
+        val productListAdapter = ProductListAdapter(this, halls)
+        binding.listView.adapter = productListAdapter
         binding.progressBar.visible(false)
     }
 

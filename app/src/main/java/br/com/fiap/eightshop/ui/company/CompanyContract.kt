@@ -5,8 +5,8 @@ import br.com.fiap.eightshop.data.model.Company
 interface CompanyContract {
 
     interface CompanView {
-        fun mostrarDados(company: List<Company>)
-        fun mostrarErro(mensagem: String)
+        fun showData(company: List<Company>)
+        fun showError(mensagem: String)
     }
 
     interface CompanyPresenter {
