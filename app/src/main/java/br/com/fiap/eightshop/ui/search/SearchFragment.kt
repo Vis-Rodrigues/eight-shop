@@ -9,9 +9,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import br.com.fiap.eightshop.HallListActivity
+import br.com.fiap.eightshop.HallListFragment
 import br.com.fiap.eightshop.R
 import br.com.fiap.eightshop.data.model.Company
 import br.com.fiap.eightshop.databinding.ActivityListaTestBinding
@@ -19,6 +22,7 @@ import br.com.fiap.eightshop.databinding.FragmentSearchBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
+import br.com.fiap.eightshop.ui.ticket.TicketFragment
 
 class SearchFragment : Fragment(), CompanyContract.CompanView {
 
@@ -41,10 +45,6 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
 
         companyPresenter = CompanyPresenter(this)
         companyPresenter.listCompanies()
-
-        val userName= activity?.intent?.extras?.getString(R.string.prompt_user.toString())
-
-        binding.txtUser.text = "Olá $userName,"
 
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
@@ -75,10 +75,19 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
     }
 
     override fun showHalls(id: String, name: String) {
-        val intent = Intent(activity, HallListActivity::class.java)
-        intent.putExtra(R.string.company_id.toString(),id)
-        intent.putExtra(R.string.company_name.toString(),name)
-        startActivity(intent)
+
+        val frag = HallListFragment.newInstance(id, name)
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.remove(this)
+            ?.replace(R.id.nav_host_fragment_activity_list_merchant, frag, "findThisFragment")
+            ?.addToBackStack(null)?.commit()
+
+//        val intent = Intent(activity, HallListActivity::class.java)
+//
+//        intent.putExtra(R.string.company_id.toString(),id)
+//        intent.putExtra(R.string.company_name.toString(),name)
+//        startActivity(intent)
+
     }
 
     companion object {

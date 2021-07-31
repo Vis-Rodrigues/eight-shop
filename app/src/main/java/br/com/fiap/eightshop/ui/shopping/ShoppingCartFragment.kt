@@ -44,10 +44,6 @@ class ShoppingCartFragment : Fragment(){
         _binding = FragmentShoppingCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textShoppingCart
-        shoppingCartViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return root
     }
 

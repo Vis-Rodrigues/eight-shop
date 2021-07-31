@@ -3,21 +3,17 @@ package br.com.fiap.eightshop
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.fiap.eightshop.data.FirebaseResult
-import br.com.fiap.eightshop.data.FirebaseService
 import br.com.fiap.eightshop.data.model.SignupModel
 import br.com.fiap.eightshop.databinding.ActivitySignUpBinding
 import br.com.fiap.eightshop.ui.login.LoginActivity
-import br.com.fiap.eightshop.ui.login.UserView
 import br.com.fiap.eightshop.ui.signup.SignUpContract
 import br.com.fiap.eightshop.ui.signup.SingUpPresenter
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -31,6 +27,11 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        // calling the action bar
+
+        // showing the back button in action bar
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -42,7 +43,13 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
         signupPresenter = SingUpPresenter(this)
 
         btnSignUp.setOnClickListener {
-            signUp(getSignupModel(name.text.toString(), email.text.toString(), password.text.toString()))
+            signUp(
+                getSignupModel(
+                    name.text.toString(),
+                    email.text.toString(),
+                    password.text.toString()
+                )
+            )
         }
     }
 
@@ -62,6 +69,19 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
                     }
                 })
     }
+
+    // this event will enable the back
+    // function to the button on press
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onContextItemSelected(item)
+    }
+
 
     private fun getSignupModel(name:String, email:String, pass:String): SignupModel{
         return SignupModel(name, email, pass)
@@ -83,6 +103,5 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
     companion object {
         private const val TAG = "SingUpActivity"
     }
-
 
 }

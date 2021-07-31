@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,6 +18,7 @@ import br.com.fiap.eightshop.databinding.ActivityListaTestBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
+import br.com.fiap.eightshop.ui.search.SearchFragment
 
 class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
 
@@ -29,6 +32,14 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+
+        val user= intent.getStringExtra(R.string.prompt_user.toString())
+        Log.i("teste", "userdata: $user")
+        var bundle = Bundle()
+        bundle.putString(R.string.prompt_user.toString(), "Vivi")
+
+        var fragment= SearchFragment()
+        fragment.arguments = bundle
 
         val navController = findNavController(R.id.nav_host_fragment_activity_list_merchant)
         // Passing each menu ID as a set of Ids because each

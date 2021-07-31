@@ -33,7 +33,7 @@ class UserFragment : Fragment() {
         _binding = FragmentUserBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textUser
+        val textView: TextView = binding.textTicket
         userViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })

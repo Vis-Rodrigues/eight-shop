@@ -11,7 +11,7 @@ interface HallContract {
     }
 
     interface HallPresenter {
-        fun listHallByCompanyId(companyId: Int)
+        fun listHallByCompanyId(companyId: Int) : Unit
     }
 
 }

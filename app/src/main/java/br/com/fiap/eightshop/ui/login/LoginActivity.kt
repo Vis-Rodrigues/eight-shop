@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -123,28 +124,27 @@ class LoginActivity : AppCompatActivity() {
 
     private fun callListMerchantActivity(){
         val intent = Intent(this@LoginActivity, ListMerchantActivity::class.java)
-        intent.putExtra(R.string.prompt_user.toString(),user.displayName)
-        intent.putExtra(R.string.prompt_email.toString(),user.email)
         startActivity(intent)
     }
 
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-        val user= intent.getStringExtra(R.string.prompt_user.toString())
-        if(user !=null){
+        val username= intent.getStringExtra(R.string.prompt_user.toString())
+        if(username != null){
             binding.username.setText(intent.getStringExtra(R.string.prompt_email.toString()))
             Toast.makeText(
                 applicationContext,
-                "Usuário ${user} cadastrado com sucesso!",
+                "Usuário ${username} cadastrado com sucesso!",
                 Toast.LENGTH_LONG
             ).show()
         }
 
     }
 
-    private fun updateUiWithUser(email: String, name: String, userId: String) {
-        user = LoggedInUser(userId, name, email)
+    private fun updateUiWithUser(email: String, name: String, userId: String): LoggedInUser {
+        Log.i(TAG, "email $email")
+        return LoggedInUser(userId, name, email)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -160,9 +160,10 @@ class LoginActivity : AppCompatActivity() {
                         Log.i(TAG, "signInWithEmail:success")
                         val firebaseUser: FirebaseUser? = fAuth.currentUser
                         if (firebaseUser != null) {
-                            updateUiWithUser(firebaseUser.email.toString(), firebaseUser.displayName.toString(),firebaseUser.uid.toString() )
+                            Log.i(TAG, "FirebaseUser")
+                            callListMerchantActivity()
                         }
-                        callListMerchantActivity()
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithEmail:failure", task.exception)
