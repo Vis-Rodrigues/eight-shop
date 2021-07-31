@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_shopping_cart"
-        android:name="br.com.fiap.eightshop.ui.shopping.ShoppingCartFragment"
+        android:name="br.com.fiap.eightshop.FavoriteCartFragment"
         android:label="@string/title_shopping_cart"
-        tools:layout="@layout/fragment_shopping_cart" />
+        tools:layout="@layout/fragment_favorite_cart" />
 
     <fragment
         android:id="@+id/navigation_ticket"

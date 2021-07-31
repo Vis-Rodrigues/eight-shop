@@ -17,7 +17,7 @@ class HallListAdapter(private val context: Activity,
         val rowView = inflater.inflate(R.layout.hall_row, null, true)
 
         val titleText = rowView.findViewById(R.id.title) as TextView
-        val subtitleText = rowView.findViewById(R.id.description) as TextView
+        val subtitleText = rowView.findViewById(R.id.tvDate) as TextView
 
         titleText.text = halls?.get(position)?.name
         subtitleText.text = halls?.get(position)?.company

@@ -20,7 +20,7 @@ class CompanyListAdapter(private val context: Activity,
 
         val titleText = rowView.findViewById(R.id.title) as TextView
         val imageView = rowView.findViewById(R.id.icon) as ImageView
-        val subtitleText = rowView.findViewById(R.id.description) as TextView
+        val subtitleText = rowView.findViewById(R.id.tvDate) as TextView
 
         titleText.text = companies?.get(position)?.companyName
 //        picasso.load(companies?.get(position)?.urlImage).resize(50, 50).centerCrop().into(imageView)
