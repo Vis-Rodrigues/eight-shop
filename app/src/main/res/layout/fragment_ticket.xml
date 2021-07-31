@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.ticket.TicketFragment">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="16dp"
@@ -30,6 +30,17 @@
             android:textSize="20sp"
             android:textColor="#004D40"
             android:layout_below="@id/imageView" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </RelativeLayout>
 
