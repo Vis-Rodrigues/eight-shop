@@ -46,7 +46,7 @@ class HallListFragment : Fragment(), HallContract.HallView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        container?.removeAllViews()
         binding = FragmentHallListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

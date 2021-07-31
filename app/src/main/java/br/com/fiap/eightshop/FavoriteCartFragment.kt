@@ -33,7 +33,7 @@ class FavoriteCartFragment : Fragment(), FavoriteCartContract.FavoriteCartView {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        container?.removeAllViews()
         binding = FragmentFavoriteCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

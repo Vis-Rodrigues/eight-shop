@@ -71,7 +71,8 @@
             android:layout_marginLeft="27dp"
             android:layout_marginTop="10dp"
             android:text="Escolha um corredor"
-            android:textColor="#000"
+            android:textColor="@color/green"
+            android:textStyle="bold"
             android:textSize="20dp" />
 
         <ListView

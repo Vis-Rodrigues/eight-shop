@@ -48,6 +48,7 @@ class ProductListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         Paper.init(activity)
         binding = FragmentProductListBinding.inflate(inflater, container, false)
         val root: View = binding.root

@@ -27,10 +27,10 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        // calling the action bar
-
         // showing the back button in action bar
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -70,9 +70,7 @@ class SignUpActivity : AppCompatActivity(), SignUpContract.SignUpView {
                 })
     }
 
-    // this event will enable the back
-    // function to the button on press
-    override fun onContextItemSelected(item: MenuItem): Boolean {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()

@@ -42,6 +42,7 @@ class ShopFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         binding = FragmentShopBinding.inflate(inflater, container, false)
         val root: View = binding.root
 

@@ -35,6 +35,9 @@ class ShoppingCartFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        container?.removeAllViews()
+
         shoppingCartViewModel =
             ViewModelProvider(
                 this,

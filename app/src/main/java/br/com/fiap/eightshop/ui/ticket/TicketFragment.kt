@@ -22,17 +22,6 @@ class TicketFragment : Fragment() {
     private val COMPANY_ID : String = "companyId"
     private val COMPANY_NAME : String = "companyName"
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(companyId: String, companyName : String) = TicketFragment().apply {
-            arguments = Bundle().apply {
-                putString(COMPANY_ID, companyId)
-                putString(COMPANY_NAME, companyId)
-            }
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +35,9 @@ class TicketFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        container?.removeAllViews()
+
         ticketViewModel =
             ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
                 TicketViewModel::class.java
@@ -66,6 +58,16 @@ class TicketFragment : Fragment() {
 //        // use position to know the selected item
 //    }
 
+    companion object {
+
+        @JvmStatic
+        fun newInstance(companyId: String, companyName : String) = TicketFragment().apply {
+            arguments = Bundle().apply {
+                putString(COMPANY_ID, companyId)
+                putString(COMPANY_NAME, companyId)
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -22,6 +22,7 @@ import br.com.fiap.eightshop.databinding.FragmentSearchBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
+import br.com.fiap.eightshop.ui.company.extensions.visible
 import br.com.fiap.eightshop.ui.ticket.TicketFragment
 
 class SearchFragment : Fragment(), CompanyContract.CompanView {
@@ -37,6 +38,7 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
         savedInstanceState: Bundle?
     ): View? {
 
+        container?.removeAllViews()
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         val root: View = binding!!.root
 
@@ -60,6 +62,7 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
 
     override fun showData(companies: List<Company>) {
         val myListAdapter = activity?.let { CompanyListAdapter(it, companies) }
+        binding?.companyProgressBar?.visible(false)
         binding?.listView?.adapter = myListAdapter
     }
 
