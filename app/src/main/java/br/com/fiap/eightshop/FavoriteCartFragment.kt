@@ -61,13 +61,23 @@ class FavoriteCartFragment : Fragment(), FavoriteCartContract.FavoriteCartView {
     }
 
     override fun showData(carts: List<FavoriteCart>) {
-        val favoriteCartListAdapter = activity?.let { FavoriteCartListAdapter(it, carts) }
-        binding.favoriteCartProgressBar.visible(false)
-        binding.favoriteCartListView.adapter = favoriteCartListAdapter
+        if (carts.isEmpty()) {
+            showMessageEmptyList()
+        }else{
+            val favoriteCartListAdapter = activity?.let { FavoriteCartListAdapter(it, carts) }
+            binding.favoriteCartProgressBar.visible(false)
+            binding.favoriteCartListView.adapter = favoriteCartListAdapter
+        }
+
     }
 
     override fun showError(message: String) {
 
+    }
+
+    fun showMessageEmptyList() {
+        binding.tvListaVazia.visible(true)
+        binding.favoriteCartProgressBar.visible(false)
     }
 
 }

@@ -23,7 +23,6 @@ class FavoriteCartPresenter (var view : FavoriteCartContract.FavoriteCartView): 
                         val carts = response.body()?.filter {it.userId == userId}
                         Log.i(TAG, carts.toString())
                         if (carts != null) {
-
                             view.showData(carts)
                         }
                     } else {

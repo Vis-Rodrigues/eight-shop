@@ -81,6 +81,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvListaVazia"
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Para adicionar carrinhos favoritos, escolha os produtos e clique no icone de favorito! =D"
+        android:textAlignment="center"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
     <ProgressBar
         android:id="@+id/favoriteCartProgressBar"
         style="?android:attr/progressBarStyle"
