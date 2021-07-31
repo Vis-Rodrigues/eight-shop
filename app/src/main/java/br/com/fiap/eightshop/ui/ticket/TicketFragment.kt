@@ -59,20 +59,6 @@ class TicketFragment : Fragment() {
             textView.text = it
         })
 
-        val arraySpinner = arrayOf(
-            "Sem filtro", "Sem glúten", "Vegano", "Vegetariano"
-        )
-        val spinner: Spinner = binding.spinner1
-        println("createView")
-//        spinner!!.setOnItemSelectedListener(this)
-
-        // Create an ArrayAdapter using a simple spinner layout and languages array
-        val aa = activity?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, arraySpinner) }
-        // Set layout to use when the list of choices appear
-        aa?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Set Adapter to Spinner
-        spinner!!.adapter = aa
-
         return root
     }
 

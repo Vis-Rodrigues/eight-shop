@@ -28,33 +28,30 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
 
         binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
             val itemAtPos = adapterView.getItemAtPosition(position)
-            Log.i(TAG, "Dados do estabelecimento $itemAtPos")
-            val company: Company = itemAtPos as Company
-
-            showHalls(company.id.toString(), company.companyName)
+            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
+            Toast.makeText(
+                this,
+                "Click on item at $itemAtPos its item id $itemIdAtPos",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 
-
-
-    override fun mostrarDados(companies: List<Company>) {
+    override fun showData(companies: List<Company>) {
 
         val myListAdapter = CompanyListAdapter(this, companies)
         binding.listView.adapter = myListAdapter
 
     }
 
-    override fun mostrarErro(message: String) {
+    override fun showError(message: String) {
         Toast.makeText(
             this, message, Toast.LENGTH_LONG
         ).show()
     }
 
     override fun showHalls(id: String, name: String) {
-        val intent = Intent(this@ListaTest, HallListActivity::class.java)
-        intent.putExtra(R.string.company_id.toString(),id)
-        intent.putExtra(R.string.company_name.toString(),name)
-        startActivity(intent)
+        TODO("Not yet implemented")
     }
 
     companion object {

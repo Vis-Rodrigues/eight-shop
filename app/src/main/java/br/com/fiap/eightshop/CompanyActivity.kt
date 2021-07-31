@@ -29,12 +29,12 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
         companyPresenter.listCompanies()
     }
 
-    override fun mostrarDados(company: List<Company>) {
+    override fun showData(company: List<Company>) {
         binding.txt1.text = company?.get(0)?.companyName
         binding.txt2.text = company?.get(0)?.urlImage
     }
 
-    override fun mostrarErro(mensagem: String) {
+    override fun showError(mensagem: String) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
     }
 

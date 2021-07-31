@@ -4,40 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp">
+    android:layout_margin="23dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="15dp">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:id="@+id/caixa">
 
         <ImageView
             android:id="@+id/icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:drawingCacheQuality="auto"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="80dp"
+            android:layout_height="84dp"
+            android:contentDescription="Foto do produto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/icons_star"/>
+            tools:src="@mipmap/ic_launcher" />
+
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textSize="20sp"
+            android:layout_marginEnd="8dp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/icon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Carrinho semanal" />
+            tools:text="Nome do Produto" />
 
         <TextView
-            android:id="@+id/tvDate"
+            android:id="@+id/price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -45,23 +45,18 @@
             app:layout_constraintEnd_toEndOf="@+id/title"
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="15/06/2021"
-            android:textSize="12dp"/>
+            tools:text="R$ 198,00" />
 
-        <Button
-            android:id="@+id/btShoppingAgain"
-            android:layout_width="100dp"
+        <TextView
+            android:id="@+id/weight"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Comprar novamente"
-            android:textColor="#2E7D32"
-            android:textSize="12dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintCircleRadius="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/title"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintEnd_toEndOf="@+id/price"
+            app:layout_constraintStart_toStartOf="@+id/price"
+            app:layout_constraintTop_toBottomOf="@+id/price"
+            tools:text="1 kg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

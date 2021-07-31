@@ -64,17 +64,25 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
 //        }
     }
 
-    override fun mostrarDados(companies: List<Company>) {
+//    override fun mostrarDados(companies: List<Company>) {
+//
+////        val myListAdapter = CompanyListAdapter(this, companies)
+////        binding.listView.adapter = myListAdapter
+//
+//    }
+//
+//    override fun mostrarErro(message: String) {
+//        Toast.makeText(
+//            this, message, Toast.LENGTH_LONG
+//        ).show()
+//    }
 
-//        val myListAdapter = CompanyListAdapter(this, companies)
-//        binding.listView.adapter = myListAdapter
-
+    override fun showData(company: List<Company>) {
+        TODO("Not yet implemented")
     }
 
-    override fun mostrarErro(message: String) {
-        Toast.makeText(
-            this, message, Toast.LENGTH_LONG
-        ).show()
+    override fun showError(mensagem: String) {
+        TODO("Not yet implemented")
     }
 
     override fun showHalls(id: String, name: String) {

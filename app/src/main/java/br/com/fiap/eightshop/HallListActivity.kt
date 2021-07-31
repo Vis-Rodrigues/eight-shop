@@ -1,6 +1,5 @@
 package br.com.fiap.eightshop
 
-import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -47,15 +46,6 @@ class HallListActivity : AppCompatActivity(), HallContract.HallView {
             hallPresenter.listHallByCompanyId(id.toInt())
         }
 
-        binding.listView.setOnItemClickListener() { adapterView, view, position, id ->
-            val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-            Toast.makeText(
-                this,
-                "Click on item at $itemAtPos its item id $itemIdAtPos",
-                Toast.LENGTH_LONG
-            ).show()
-        }
     }
 
     override fun showData(halls: List<Hall>) {

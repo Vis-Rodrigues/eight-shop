@@ -1,16 +1,15 @@
 package br.com.fiap.eightshop
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import br.com.fiap.eightshop.data.model.Hall
-import br.com.fiap.eightshop.databinding.ActivityHallListBinding
 import br.com.fiap.eightshop.databinding.FragmentHallListBinding
-import br.com.fiap.eightshop.databinding.FragmentSearchBinding
-import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 import br.com.fiap.eightshop.ui.company.extensions.visible
 import br.com.fiap.eightshop.ui.hall.HallContract
 import br.com.fiap.eightshop.ui.hall.HallListAdapter
@@ -53,18 +52,45 @@ class HallListFragment : Fragment(), HallContract.HallView {
 
         hallPresenter = HallPresenter(this)
         companyId?.let { hallPresenter.listHallByCompanyId(it.toInt()) }
-
+        loadSpinner()
         binding.hallListView.setOnItemClickListener() { adapterView, view, position, id ->
+
             val itemAtPos = adapterView.getItemAtPosition(position)
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
+            Log.i(TAG, "Dados do estabelecimento $itemAtPos")
+            val hall: Hall = itemAtPos as Hall
+
+            showProducts(hall.id, hall.name)
 
         }
+
+
+
         return root
         
     }
 
-    companion object {
+    fun loadSpinner(){
+        val arraySpinner = arrayOf(
+            "Sem filtro", "Sem glúten", "Vegano", "Vegetariano"
+        )
+        val spinner: Spinner = binding.spinner1
+//        spinner!!.setOnItemSelectedListener(this)
+        val spinnerData = activity?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, arraySpinner) }
+        spinnerData?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner!!.adapter = spinnerData
+    }
+    fun showProducts(id: String, name: String) {
 
+        val frag = ProductListFragment.newInstance(id, name)
+        activity?.supportFragmentManager?.beginTransaction()
+            ?.remove(this)
+            ?.replace(R.id.nav_host_fragment_activity_list_merchant, frag, "findThisFragment")
+            ?.addToBackStack(null)?.commit()
+
+    }
+
+    companion object {
+        private const val TAG = "HallListFragment"
         @JvmStatic
         fun newInstance(companyId: String, companyNamw: String) =
             HallListFragment().apply {
