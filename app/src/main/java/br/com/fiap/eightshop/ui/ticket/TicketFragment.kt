@@ -15,11 +15,10 @@ import br.com.fiap.eightshop.databinding.FragmentTicketBinding
 class TicketFragment : Fragment() {
 
     private lateinit var ticketViewModel: TicketViewModel
-    private var _binding: FragmentTicketBinding? = null
+    private lateinit var binding: FragmentTicketBinding
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    private val binding get() = _binding!!
     private val COMPANY_ID : String = "companyId"
     private val COMPANY_NAME : String = "companyName"
 
@@ -44,7 +43,7 @@ class TicketFragment : Fragment() {
                 TicketViewModel::class.java
             )
 
-        _binding = FragmentTicketBinding.inflate(inflater, container, false)
+        binding = FragmentTicketBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textTicket
@@ -57,15 +56,10 @@ class TicketFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        arguments?.getString("teste")?.let {
-            valor = it
-        }
-        println("dfdfdfdfdfd $valor")
-        binding.textTicket.text = valor
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
