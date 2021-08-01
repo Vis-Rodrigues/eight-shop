@@ -1,5 +1,7 @@
 package br.com.fiap.eightshop.ui.login
 
+import br.com.fiap.eightshop.data.model.UserView
+
 /**
  * Authentication result : success (user details) or error message.
  */

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_shopping_cart"
-        android:name="br.com.fiap.eightshop.FavoriteCartFragment"
+        android:name="br.com.fiap.eightshop.ui.favoritecart.FavoriteCartFragment"
         android:label="@string/title_shopping_cart"
         tools:layout="@layout/fragment_favorite_cart" />
 
