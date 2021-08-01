@@ -16,19 +16,6 @@
         android:orientation="vertical"
         android:id="@+id/novo">
 
-<<<<<<< HEAD
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:paddingBottom="10dp"
-        android:background="@color/green"
-        android:orientation="vertical"
-        android:id="@+id/linear">
-
-        <TextView
-            android:id="@+id/txtNewFavoriteCart"
-=======
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,56 +39,11 @@
 
         <TextView
             android:id="@+id/txtStep"
->>>>>>> main2
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="10dp"
-<<<<<<< HEAD
-            android:text="@string/ttx_favorite"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="20dp" />
-    </LinearLayout>
-
-        <TextView
-            android:id="@+id/txtStep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/txt_step"
-            android:textSize="13dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"
-        android:paddingBottom="10dp"
-        android:orientation="horizontal"
-        android:id="@+id/lstTitle">
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:src="@drawable/logo"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            />
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/favorite_carts"
-            android:textColor="@color/green"
-            android:textStyle="bold"
-            android:textSize="20dp" />
-    </LinearLayout>
-=======
             android:text="@string/txt_step"
             android:textSize="13dp" />
 
@@ -131,7 +73,6 @@
                 android:textStyle="bold"
                 android:textSize="20dp" />
         </LinearLayout>
->>>>>>> main2
         <ListView
             android:id="@+id/favoriteCartListView"
             android:layout_marginTop="8dp"
