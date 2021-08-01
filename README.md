@@ -7,7 +7,7 @@ URL: https://github.com/Vis-Rodrigues/eight-shop/tree/main
 
 Implementado aplicativo Android em Kotlin com chamadas de web service com mockio e firebase para autenticação.
 
-## Dados para logar
+## Dados de autenticação
 
 > É possível realizar o cadastro no aplicativo e então fazer o login. Caso não deseje realizar o cadastro, utilize os dados abaixo.
 
