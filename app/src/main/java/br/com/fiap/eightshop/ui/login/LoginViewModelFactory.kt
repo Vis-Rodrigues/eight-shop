@@ -2,8 +2,8 @@ package br.com.fiap.eightshop.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import br.com.fiap.eightshop.data.LoginDataSource
-import br.com.fiap.eightshop.data.LoginRepository
+import br.com.fiap.eightshop.data.firebase.LoginDataSource
+import br.com.fiap.eightshop.data.firebase.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

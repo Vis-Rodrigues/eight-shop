@@ -23,8 +23,7 @@ class ProductListAdapter(private val context: Activity,
         val weight = rowView.findViewById(R.id.weight) as TextView
 
         titleText.text = products?.get(position)?.name
-//        Glide.with(context).load(products?.get(position)?.urlImage).into(imageView);
-        Glide.with(context).load("https://images-submarino.b2w.io/produtos/01/00/item/130836/1/130836199P1.jpg").into(imageView);
+        Glide.with(context).load(products?.get(position)?.photo).into(imageView);
         price.text = products?.get(position)?.price.toString()
         weight.text = products?.get(position)?.weight
 

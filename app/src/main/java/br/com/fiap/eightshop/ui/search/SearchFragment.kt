@@ -1,29 +1,20 @@
 package br.com.fiap.eightshop.ui.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import br.com.fiap.eightshop.HallListActivity
-import br.com.fiap.eightshop.HallListFragment
 import br.com.fiap.eightshop.R
 import br.com.fiap.eightshop.data.model.Company
-import br.com.fiap.eightshop.databinding.ActivityListaTestBinding
 import br.com.fiap.eightshop.databinding.FragmentSearchBinding
 import br.com.fiap.eightshop.ui.company.CompanyContract
 import br.com.fiap.eightshop.ui.company.CompanyListAdapter
 import br.com.fiap.eightshop.ui.company.CompanyPresenter
 import br.com.fiap.eightshop.ui.company.extensions.visible
-import br.com.fiap.eightshop.ui.ticket.TicketFragment
+import br.com.fiap.eightshop.ui.hall.HallListFragment
 
 class SearchFragment : Fragment(), CompanyContract.CompanView {
 

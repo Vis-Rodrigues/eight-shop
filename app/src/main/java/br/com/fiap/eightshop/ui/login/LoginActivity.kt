@@ -14,9 +14,9 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import br.com.fiap.eightshop.ListMerchantActivity
+import br.com.fiap.eightshop.ui.company.ListMerchantActivity
 import br.com.fiap.eightshop.R
-import br.com.fiap.eightshop.SignUpActivity
+import br.com.fiap.eightshop.ui.signup.SignUpActivity
 import br.com.fiap.eightshop.data.model.LoggedInUser
 import br.com.fiap.eightshop.databinding.ActivityLoginBinding
 import com.google.android.gms.tasks.OnCompleteListener

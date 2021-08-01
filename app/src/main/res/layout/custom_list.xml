@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="@+id/title"
             app:layout_constraintStart_toStartOf="@+id/title"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="Alguma coisa falando sobre esse produto ...blablabla" />
+            tools:text="Descrição" />
 
         <TextView
             android:id="@+id/description2"
@@ -62,7 +62,7 @@
             app:layout_constraintEnd_toEndOf="@+id/description"
             app:layout_constraintStart_toStartOf="@+id/description"
             app:layout_constraintTop_toBottomOf="@+id/description"
-            tools:text="Alguma coisa falando sobre esse produto ...blablabla" />
+            tools:text="Descrição2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -4,10 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
-import br.com.fiap.eightshop.data.LoginRepository
-import br.com.fiap.eightshop.data.Result
+import br.com.fiap.eightshop.data.firebase.LoginRepository
+import br.com.fiap.eightshop.data.firebase.Result
 
 import br.com.fiap.eightshop.R
+import br.com.fiap.eightshop.data.model.UserView
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 

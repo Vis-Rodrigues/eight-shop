@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#fffffa       "
     android:layout_width="match_parent"
-    tools:context=".ProductListFragment">
+    tools:context=".ui.product.ProductListFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"

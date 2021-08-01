@@ -1,6 +1,5 @@
 package br.com.fiap.eightshop.ui.ticket
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +16,6 @@ class TicketFragment : Fragment() {
     private lateinit var ticketViewModel: TicketViewModel
     private lateinit var binding: FragmentTicketBinding
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val COMPANY_ID : String = "companyId"
     private val COMPANY_NAME : String = "companyName"
 
@@ -26,7 +23,6 @@ class TicketFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         println("create")
-
 
     }
 
@@ -53,10 +49,6 @@ class TicketFragment : Fragment() {
 
         return root
     }
-
-//    override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
-//        // use position to know the selected item
-//    }
 
     companion object {
 
