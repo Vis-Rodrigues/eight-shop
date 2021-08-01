@@ -38,9 +38,9 @@ class CompanyActivity : AppCompatActivity(), CompanyContract.CompanView {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
     }
 
-    override fun showHalls(id: String, name: String) {
+    override fun showHalls(company : Company) {
         val intent = Intent(this@CompanyActivity, HallListActivity::class.java)
-        intent.putExtra("companyId",id)
+        intent.putExtra("companyId",company.id)
         startActivity(intent)
     }
 }

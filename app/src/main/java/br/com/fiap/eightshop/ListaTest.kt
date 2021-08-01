@@ -50,9 +50,10 @@ class ListaTest : AppCompatActivity(), CompanyContract.CompanView{
         ).show()
     }
 
-    override fun showHalls(id: String, name: String) {
+    override fun showHalls(company: Company) {
         TODO("Not yet implemented")
     }
+
 
     companion object {
         private const val TAG = "ListaTest"

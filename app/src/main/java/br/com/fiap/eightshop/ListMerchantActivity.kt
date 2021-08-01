@@ -3,6 +3,7 @@ package br.com.fiap.eightshop
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,10 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // showing the back button in action bar
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding = ActivityListMerchantBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -77,6 +82,16 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
 //        ).show()
 //    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onContextItemSelected(item)
+    }
+
     override fun showData(company: List<Company>) {
         TODO("Not yet implemented")
     }
@@ -85,10 +100,10 @@ class ListMerchantActivity : AppCompatActivity(), CompanyContract.CompanView {
         TODO("Not yet implemented")
     }
 
-    override fun showHalls(id: String, name: String) {
+    override fun showHalls(company: Company) {
         val intent = Intent(this@ListMerchantActivity, HallListActivity::class.java)
-        intent.putExtra(R.string.company_id.toString(),id)
-        intent.putExtra(R.string.company_name.toString(),name)
+        intent.putExtra(R.string.company_id.toString(),company.id)
+        intent.putExtra(R.string.company_name.toString(),company.description)
         startActivity(intent)
     }
 

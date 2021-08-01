@@ -6,39 +6,36 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import br.com.fiap.eightshop.data.model.ClassificationFilter
 import br.com.fiap.eightshop.data.model.Hall
 import br.com.fiap.eightshop.databinding.FragmentHallListBinding
 import br.com.fiap.eightshop.ui.company.extensions.visible
 import br.com.fiap.eightshop.ui.hall.HallContract
 import br.com.fiap.eightshop.ui.hall.HallListAdapter
 import br.com.fiap.eightshop.ui.hall.HallPresenter
+import com.bumptech.glide.Glide
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val COMPANY_ID = "companyId"
+private const val COMPANY_URL_IMAGE = "companyUrlImage"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HallListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HallListFragment : Fragment(), HallContract.HallView {
+
+class HallListFragment : Fragment(), HallContract.HallView, AdapterView.OnItemSelectedListener {
 
     private lateinit var binding: FragmentHallListBinding
     private lateinit var hallPresenter: HallContract.HallPresenter
 
     private var companyId: String? = null
-    private var companyName: String? = null
+    private var companyUrlImage: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            companyId = it.getString(ARG_PARAM1)
-            companyName = it.getString(ARG_PARAM2)
+            companyId = it.getString(COMPANY_ID)
+            companyUrlImage = it.getString(COMPANY_URL_IMAGE)
         }
     }
 
@@ -47,12 +44,22 @@ class HallListFragment : Fragment(), HallContract.HallView {
         savedInstanceState: Bundle?
     ): View? {
         container?.removeAllViews()
+
         binding = FragmentHallListBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        // Configuração da imagem da tela
+        this?.let { Glide.with(it).load(companyUrlImage).into(binding.imageView2) };
+
         hallPresenter = HallPresenter(this)
-        companyId?.let { hallPresenter.listHallByCompanyId(it.toInt()) }
         loadSpinner()
+        setUpListener()
+
+        return root
+        
+    }
+
+    private fun setUpListener() {
         binding.hallListView.setOnItemClickListener() { adapterView, view, position, id ->
 
             val itemAtPos = adapterView.getItemAtPosition(position)
@@ -60,25 +67,23 @@ class HallListFragment : Fragment(), HallContract.HallView {
             val hall: Hall = itemAtPos as Hall
 
             showProducts(hall.id, hall.name)
-
+            setUpListener()
         }
 
+        Log.i(TAG, binding.spinner1.selectedItem.toString())
 
-
-        return root
-        
     }
 
     fun loadSpinner(){
-        val arraySpinner = arrayOf(
-            "Sem filtro", "Sem glúten", "Vegano", "Vegetariano"
-        )
+        val arraySpinner = ClassificationFilter.values()
         val spinner: Spinner = binding.spinner1
-//        spinner!!.setOnItemSelectedListener(this)
         val spinnerData = activity?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, arraySpinner) }
         spinnerData?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner!!.adapter = spinnerData
+        spinner.onItemSelectedListener = this
+
     }
+
     fun showProducts(id: String, name: String) {
 
         val frag = ProductListFragment.newInstance(id, name)
@@ -92,17 +97,16 @@ class HallListFragment : Fragment(), HallContract.HallView {
     companion object {
         private const val TAG = "HallListFragment"
         @JvmStatic
-        fun newInstance(companyId: String, companyNamw: String) =
+        fun newInstance(companyId: String, companyUrlImage: String) =
             HallListFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, companyId)
-                    putString(ARG_PARAM2, companyNamw)
+                    putString(COMPANY_ID, companyId)
+                    putString(COMPANY_URL_IMAGE, companyUrlImage)
                 }
             }
     }
 
     override fun showData(halls: List<Hall>) {
-        println("tesssss")
         val myListAdapter = activity?.let { HallListAdapter(it, halls) }
         binding.hallProgressBar.visible(false)
         binding.hallListView.adapter = myListAdapter
@@ -110,5 +114,24 @@ class HallListFragment : Fragment(), HallContract.HallView {
 
     override fun showError(message: String) {
 
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        val selectedFilter = p0?.getItemIdAtPosition(p2)?.toInt()
+
+        if (ClassificationFilter.SEM_FILTRO.ordinal != selectedFilter) {
+            companyId?.let {
+                hallPresenter.listHallByCompanyIdAndCategoryId(
+                    it.toInt(),
+                    selectedFilter
+                )
+            }
+        } else {
+            companyId?.let { hallPresenter.listHallByCompanyId(it.toInt()) }
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }

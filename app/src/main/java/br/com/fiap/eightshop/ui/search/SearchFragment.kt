@@ -50,7 +50,7 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
             Log.i(TAG, "Dados do estabelecimento $itemAtPos")
             val company: Company = itemAtPos as Company
 
-            showHalls(company.id.toString(), company.companyName)
+            showHalls(company)
         }
         return root
     }
@@ -72,9 +72,9 @@ class SearchFragment : Fragment(), CompanyContract.CompanView {
         ).show()
     }
 
-    override fun showHalls(id: String, name: String) {
+    override fun showHalls(company: Company) {
 
-        val frag = HallListFragment.newInstance(id, name)
+        val frag = HallListFragment.newInstance(company.id, company.urlImage)
         activity?.supportFragmentManager?.beginTransaction()
             ?.remove(this)
             ?.replace(R.id.nav_host_fragment_activity_list_merchant, frag, "findThisFragment")

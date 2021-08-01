@@ -7,7 +7,7 @@ interface CompanyContract {
     interface CompanView {
         fun showData(company: List<Company>)
         fun showError(mensagem: String)
-        fun showHalls(id: String, name: String)
+        fun showHalls(company: Company)
     }
 
     interface CompanyPresenter {
